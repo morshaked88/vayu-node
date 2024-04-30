@@ -3,15 +3,18 @@ import { User } from "../types/user.type";
 
 const userClient = db.user;
 
+type userFilter = {
+  name?: string;
+  email?: string;
+};
 export const getUsers = async (
   limit: number,
   offset: number,
   name?: string,
   email?: string
 ): Promise<User[]> => {
-  const whereClause: any = {};
+  const whereClause: userFilter = {};
 
-  //prisma sqlite is already case-insensitive
   if (name) {
     whereClause["name"] = name;
   }

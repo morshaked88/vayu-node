@@ -5,12 +5,10 @@ import { querySchema } from "../schemas/query.schema";
 import { updateUserStatusSchema } from "../schemas/body.schema";
 const userRouter = Router();
 
-//GET: get all users optionally filtered by name or email and pagination by limit and offset
-// /user?limit=10&offset=1&name=example&email=example@example.com
+//GET: /api/v1/user - get users with pagination or filter by name or email
 userRouter.get("/", validateQueryData(querySchema), userController.getUsers);
 
-//update user status with body data
-/// /user/status
+//PUT: /api/v1/user/status - update user status
 userRouter.put(
   "/status",
   validateBodyData(updateUserStatusSchema),
